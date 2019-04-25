@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qg.mapper.TeachingMaterialWheelPlantingMapper">
+
+    <select id="getTeachingMaterialWheelPlantingById" resultType="com.qg.pojo.TeachingMaterialWheelPlanting">
+        select
+                wp_id as wpId,
+                wp_index as wpIndex,
+                wp_name as wpName,
+                wp_statu as wpStatu,
+                wp_weight as wpWeight,
+                wp_imagename as wpImagename,
+                wp_imageconent as wpImageconent,
+                wp_imagepath as wpImagepath
+        from teaching_material_wheel_planting
+        <trim prefix="where" prefixOverrides="and | or">
+            <if test="id != null">
+                and id=#{id}
+            </if>
+        </trim>
+    </select>
+
+    <select id="getTeachingMaterialWheelPlantingListByMap" resultType="com.qg.pojo.TeachingMaterialWheelPlanting" parameterType="java.util.Map">
+        select
+                wp_id as wpId,
+                wp_index as wpIndex,
+                wp_name as wpName,
+                wp_statu as wpStatu,
+                wp_weight as wpWeight,
+                wp_imagename as wpImagename,
+                wp_imageconent as wpImageconent,
+                wp_imagepath as wpImagepath
+        from teaching_material_wheel_planting
+        <trim prefix="where" prefixOverrides="and | or">
+                <if test="wpId != null and wpId!=''">
+                    and wp_id=#{wpId}
+                </if>
+                <if test="wpIndex != null and wpIndex!=''">
+                    and wp_index=#{wpIndex}
+                </if>
+                <if test="wpName != null and wpName!=''">
+                    and wp_name=#{wpName}
+                </if>
+                <if test="wpStatu != null and wpStatu!=''">
+                    and wp_statu=#{wpStatu}
+                </if>
+                <if test="wpWeight != null and wpWeight!=''">
+                    and wp_weight=#{wpWeight}
+                </if>
+                <if test="wpImagename != null and wpImagename!=''">
+                    and wp_imagename=#{wpImagename}
+                </if>
+                <if test="wpImageconent != null and wpImageconent!=''">
+                    and wp_imageconent=#{wpImageconent}
+                </if>
+                <if test="wpImagepath != null and wpImagepath!=''">
+                    and wp_imagepath=#{wpImagepath}
+                </if>
+        </trim>
+        <if test="beginPos != null and pageSize != null ">
+            limit #{beginPos},#{pageSize}
+        </if>
+    </select>
+
+    <select id="getTeachingMaterialWheelPlantingCountByMap" resultType="Integer"  parameterType="java.util.Map">
+        select count(*) from teaching_material_wheel_planting
+        <trim prefix="where" prefixOverrides="and | or">
+                <if test="wpId != null and wpId!=''">
+                    and wp_id=#{wpId}
+                </if>
+                <if test="wpIndex != null and wpIndex!=''">
+                    and wp_index=#{wpIndex}
+                </if>
+                <if test="wpName != null and wpName!=''">
+                    and wp_name=#{wpName}
+                </if>
+                <if test="wpStatu != null and wpStatu!=''">
+                    and wp_statu=#{wpStatu}
+                </if>
+                <if test="wpWeight != null and wpWeight!=''">
+                    and wp_weight=#{wpWeight}
+                </if>
+                <if test="wpImagename != null and wpImagename!=''">
+                    and wp_imagename=#{wpImagename}
+                </if>
+                <if test="wpImageconent != null and wpImageconent!=''">
+                    and wp_imageconent=#{wpImageconent}
+                </if>
+                <if test="wpImagepath != null and wpImagepath!=''">
+                    and wp_imagepath=#{wpImagepath}
+                </if>
+        </trim>
+    </select>
+
+    <insert id="insertTeachingMaterialWheelPlanting" parameterType="com.qg.pojo.TeachingMaterialWheelPlanting">
+        insert into teaching_material_wheel_planting(
+                        wp_id,
+                        wp_index,
+                        wp_name,
+                        wp_statu,
+                        wp_weight,
+                        wp_imagename,
+                        wp_imageconent,
+                        wp_imagepath)
+        values(
+                     #{wpId},
+                     #{wpIndex},
+                     #{wpName},
+                     #{wpStatu},
+                     #{wpWeight},
+                     #{wpImagename},
+                     #{wpImageconent},
+                    #{wpImagepath})
+    </insert>
+
+    <update id="updateTeachingMaterialWheelPlanting" parameterType="com.qg.pojo.TeachingMaterialWheelPlanting">
+        update teaching_material_wheel_planting
+        <trim prefix="set" suffixOverrides="," suffix="where id=#{id}">
+                        <if test="wpId != null and wpId!=''">
+                            wp_id=#{wpId},
+                        </if>
+                        <if test="wpIndex != null and wpIndex!=''">
+                            wp_index=#{wpIndex},
+                        </if>
+                        <if test="wpName != null and wpName!=''">
+                            wp_name=#{wpName},
+                        </if>
+                        <if test="wpStatu != null and wpStatu!=''">
+                            wp_statu=#{wpStatu},
+                        </if>
+                        <if test="wpWeight != null and wpWeight!=''">
+                            wp_weight=#{wpWeight},
+                        </if>
+                        <if test="wpImagename != null and wpImagename!=''">
+                            wp_imagename=#{wpImagename},
+                        </if>
+                        <if test="wpImageconent != null and wpImageconent!=''">
+                            wp_imageconent=#{wpImageconent},
+                        </if>
+                        <if test="wpImagepath != null and wpImagepath!=''">
+                            wp_imagepath=#{wpImagepath}
+                        </if>
+        </trim>
+    </update>
+
+    <delete id="deleteTeachingMaterialWheelPlantingById" parameterType="String">
+        delete from teaching_material_wheel_planting where id = #{id}
+    </delete>
+
+    <delete id="batchDeleteTeachingMaterialWheelPlanting" parameterType="java.util.Map">
+        delete from teaching_material_wheel_planting where id in (
+            <foreach collection="ids" item="id" separator=",">
+                    #{id}
+            </foreach>
+        )
+    </delete>
+</mapper>

@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qg.mapper.TeachingMaterialContenMapper">
+
+    <select id="getTeachingMaterialContenById" resultType="com.qg.pojo.TeachingMaterialConten">
+        select
+                tm_content_id as tmContentId,
+                tm_conten_title as tmContenTitle,
+                tm_conten_purpose as tmContenPurpose,
+                tm_conten_weight as tmContenWeight,
+                tm_conten_isinvalid as tmContenIsinvalid,
+                tm_conten_link as tmContenLink,
+                tm_conten_text as tmContenText,
+                createdtime as createdtime,
+                tm_id as tmId
+        from teaching_material_conten
+        <trim prefix="where" prefixOverrides="and | or">
+            <if test="id != null">
+                and id=#{id}
+            </if>
+        </trim>
+    </select>
+
+    <select id="getTeachingMaterialContenListByMap" resultType="com.qg.pojo.TeachingMaterialConten" parameterType="java.util.Map">
+        select
+                tm_content_id as tmContentId,
+                tm_conten_title as tmContenTitle,
+                tm_conten_purpose as tmContenPurpose,
+                tm_conten_weight as tmContenWeight,
+                tm_conten_isinvalid as tmContenIsinvalid,
+                tm_conten_link as tmContenLink,
+                tm_conten_text as tmContenText,
+                createdtime as createdtime,
+                tm_id as tmId
+        from teaching_material_conten
+        <trim prefix="where" prefixOverrides="and | or">
+                <if test="tmContentId != null and tmContentId!=''">
+                    and tm_content_id=#{tmContentId}
+                </if>
+                <if test="tmContenTitle != null and tmContenTitle!=''">
+                    and tm_conten_title=#{tmContenTitle}
+                </if>
+                <if test="tmContenPurpose != null and tmContenPurpose!=''">
+                    and tm_conten_purpose=#{tmContenPurpose}
+                </if>
+                <if test="tmContenWeight != null and tmContenWeight!=''">
+                    and tm_conten_weight=#{tmContenWeight}
+                </if>
+                <if test="tmContenIsinvalid != null and tmContenIsinvalid!=''">
+                    and tm_conten_isinvalid=#{tmContenIsinvalid}
+                </if>
+                <if test="tmContenLink != null and tmContenLink!=''">
+                    and tm_conten_link=#{tmContenLink}
+                </if>
+                <if test="tmContenText != null and tmContenText!=''">
+                    and tm_conten_text=#{tmContenText}
+                </if>
+                <if test="createdtime != null and createdtime!=''">
+                    and createdtime=#{createdtime}
+                </if>
+                <if test="tmId != null and tmId!=''">
+                    and tm_id=#{tmId}
+                </if>
+        </trim>
+        <if test="beginPos != null and pageSize != null ">
+            limit #{beginPos},#{pageSize}
+        </if>
+    </select>
+
+    <select id="getTeachingMaterialContenCountByMap" resultType="Integer"  parameterType="java.util.Map">
+        select count(*) from teaching_material_conten
+        <trim prefix="where" prefixOverrides="and | or">
+                <if test="tmContentId != null and tmContentId!=''">
+                    and tm_content_id=#{tmContentId}
+                </if>
+                <if test="tmContenTitle != null and tmContenTitle!=''">
+                    and tm_conten_title=#{tmContenTitle}
+                </if>
+                <if test="tmContenPurpose != null and tmContenPurpose!=''">
+                    and tm_conten_purpose=#{tmContenPurpose}
+                </if>
+                <if test="tmContenWeight != null and tmContenWeight!=''">
+                    and tm_conten_weight=#{tmContenWeight}
+                </if>
+                <if test="tmContenIsinvalid != null and tmContenIsinvalid!=''">
+                    and tm_conten_isinvalid=#{tmContenIsinvalid}
+                </if>
+                <if test="tmContenLink != null and tmContenLink!=''">
+                    and tm_conten_link=#{tmContenLink}
+                </if>
+                <if test="tmContenText != null and tmContenText!=''">
+                    and tm_conten_text=#{tmContenText}
+                </if>
+                <if test="createdtime != null and createdtime!=''">
+                    and createdtime=#{createdtime}
+                </if>
+                <if test="tmId != null and tmId!=''">
+                    and tm_id=#{tmId}
+                </if>
+        </trim>
+    </select>
+
+    <insert id="insertTeachingMaterialConten" parameterType="com.qg.pojo.TeachingMaterialConten">
+        insert into teaching_material_conten(
+                        tm_content_id,
+                        tm_conten_title,
+                        tm_conten_purpose,
+                        tm_conten_weight,
+                        tm_conten_isinvalid,
+                        tm_conten_link,
+                        tm_conten_text,
+                        createdtime,
+                        tm_id)
+        values(
+                     #{tmContentId},
+                     #{tmContenTitle},
+                     #{tmContenPurpose},
+                     #{tmContenWeight},
+                     #{tmContenIsinvalid},
+                     #{tmContenLink},
+                     #{tmContenText},
+                     #{createdtime},
+                    #{tmId})
+    </insert>
+
+    <update id="updateTeachingMaterialConten" parameterType="com.qg.pojo.TeachingMaterialConten">
+        update teaching_material_conten
+        <trim prefix="set" suffixOverrides="," suffix="where id=#{id}">
+                        <if test="tmContentId != null and tmContentId!=''">
+                            tm_content_id=#{tmContentId},
+                        </if>
+                        <if test="tmContenTitle != null and tmContenTitle!=''">
+                            tm_conten_title=#{tmContenTitle},
+                        </if>
+                        <if test="tmContenPurpose != null and tmContenPurpose!=''">
+                            tm_conten_purpose=#{tmContenPurpose},
+                        </if>
+                        <if test="tmContenWeight != null and tmContenWeight!=''">
+                            tm_conten_weight=#{tmContenWeight},
+                        </if>
+                        <if test="tmContenIsinvalid != null and tmContenIsinvalid!=''">
+                            tm_conten_isinvalid=#{tmContenIsinvalid},
+                        </if>
+                        <if test="tmContenLink != null and tmContenLink!=''">
+                            tm_conten_link=#{tmContenLink},
+                        </if>
+                        <if test="tmContenText != null and tmContenText!=''">
+                            tm_conten_text=#{tmContenText},
+                        </if>
+                        <if test="createdtime != null and createdtime!=''">
+                            createdtime=#{createdtime},
+                        </if>
+                        <if test="tmId != null and tmId!=''">
+                            tm_id=#{tmId}
+                        </if>
+        </trim>
+    </update>
+
+    <delete id="deleteTeachingMaterialContenById" parameterType="String">
+        delete from teaching_material_conten where id = #{id}
+    </delete>
+
+    <delete id="batchDeleteTeachingMaterialConten" parameterType="java.util.Map">
+        delete from teaching_material_conten where id in (
+            <foreach collection="ids" item="id" separator=",">
+                    #{id}
+            </foreach>
+        )
+    </delete>
+</mapper>

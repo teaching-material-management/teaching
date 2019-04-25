@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qg.mapper.TeachingMaterialMapper">
+
+    <select id="getTeachingMaterialById" resultType="com.qg.pojo.TeachingMaterial">
+        select
+                tm_id as tmId,
+                tm_type_id as tmTypeId,
+                tm_name as tmName,
+                tm_number as tmNumber,
+                tm_page_number as tmPageNumber,
+                tm_price as tmPrice,
+                tm_press as tmPress,
+                tm_imagespath as tmImagespath,
+                createdtime as createdtime,
+                tm_status as tmStatus
+        from teaching_material
+        <trim prefix="where" prefixOverrides="and | or">
+            <if test="id != null">
+                and id=#{id}
+            </if>
+        </trim>
+    </select>
+
+    <select id="getTeachingMaterialListByMap" resultType="com.qg.pojo.TeachingMaterial" parameterType="java.util.Map">
+        select
+                tm_id as tmId,
+                tm_type_id as tmTypeId,
+                tm_name as tmName,
+                tm_number as tmNumber,
+                tm_page_number as tmPageNumber,
+                tm_price as tmPrice,
+                tm_press as tmPress,
+                tm_imagespath as tmImagespath,
+                createdtime as createdtime,
+                tm_status as tmStatus
+        from teaching_material
+        <trim prefix="where" prefixOverrides="and | or">
+                <if test="tmId != null and tmId!=''">
+                    and tm_id=#{tmId}
+                </if>
+                <if test="tmTypeId != null and tmTypeId!=''">
+                    and tm_type_id=#{tmTypeId}
+                </if>
+                <if test="tmName != null and tmName!=''">
+                    and tm_name=#{tmName}
+                </if>
+                <if test="tmNumber != null and tmNumber!=''">
+                    and tm_number=#{tmNumber}
+                </if>
+                <if test="tmPageNumber != null and tmPageNumber!=''">
+                    and tm_page_number=#{tmPageNumber}
+                </if>
+                <if test="tmPrice != null and tmPrice!=''">
+                    and tm_price=#{tmPrice}
+                </if>
+                <if test="tmPress != null and tmPress!=''">
+                    and tm_press=#{tmPress}
+                </if>
+                <if test="tmImagespath != null and tmImagespath!=''">
+                    and tm_imagespath=#{tmImagespath}
+                </if>
+                <if test="createdtime != null and createdtime!=''">
+                    and createdtime=#{createdtime}
+                </if>
+                <if test="tmStatus != null and tmStatus!=''">
+                    and tm_status=#{tmStatus}
+                </if>
+        </trim>
+        <if test="beginPos != null and pageSize != null ">
+            limit #{beginPos},#{pageSize}
+        </if>
+    </select>
+
+    <select id="getTeachingMaterialCountByMap" resultType="Integer"  parameterType="java.util.Map">
+        select count(*) from teaching_material
+        <trim prefix="where" prefixOverrides="and | or">
+                <if test="tmId != null and tmId!=''">
+                    and tm_id=#{tmId}
+                </if>
+                <if test="tmTypeId != null and tmTypeId!=''">
+                    and tm_type_id=#{tmTypeId}
+                </if>
+                <if test="tmName != null and tmName!=''">
+                    and tm_name=#{tmName}
+                </if>
+                <if test="tmNumber != null and tmNumber!=''">
+                    and tm_number=#{tmNumber}
+                </if>
+                <if test="tmPageNumber != null and tmPageNumber!=''">
+                    and tm_page_number=#{tmPageNumber}
+                </if>
+                <if test="tmPrice != null and tmPrice!=''">
+                    and tm_price=#{tmPrice}
+                </if>
+                <if test="tmPress != null and tmPress!=''">
+                    and tm_press=#{tmPress}
+                </if>
+                <if test="tmImagespath != null and tmImagespath!=''">
+                    and tm_imagespath=#{tmImagespath}
+                </if>
+                <if test="createdtime != null and createdtime!=''">
+                    and createdtime=#{createdtime}
+                </if>
+                <if test="tmStatus != null and tmStatus!=''">
+                    and tm_status=#{tmStatus}
+                </if>
+        </trim>
+    </select>
+
+    <insert id="insertTeachingMaterial" parameterType="com.qg.pojo.TeachingMaterial">
+        insert into teaching_material(
+                        tm_id,
+                        tm_type_id,
+                        tm_name,
+                        tm_number,
+                        tm_page_number,
+                        tm_price,
+                        tm_press,
+                        tm_imagespath,
+                        createdtime,
+                        tm_status)
+        values(
+                     #{tmId},
+                     #{tmTypeId},
+                     #{tmName},
+                     #{tmNumber},
+                     #{tmPageNumber},
+                     #{tmPrice},
+                     #{tmPress},
+                     #{tmImagespath},
+                     #{createdtime},
+                    #{tmStatus})
+    </insert>
+
+    <update id="updateTeachingMaterial" parameterType="com.qg.pojo.TeachingMaterial">
+        update teaching_material
+        <trim prefix="set" suffixOverrides="," suffix="where id=#{id}">
+                        <if test="tmId != null and tmId!=''">
+                            tm_id=#{tmId},
+                        </if>
+                        <if test="tmTypeId != null and tmTypeId!=''">
+                            tm_type_id=#{tmTypeId},
+                        </if>
+                        <if test="tmName != null and tmName!=''">
+                            tm_name=#{tmName},
+                        </if>
+                        <if test="tmNumber != null and tmNumber!=''">
+                            tm_number=#{tmNumber},
+                        </if>
+                        <if test="tmPageNumber != null and tmPageNumber!=''">
+                            tm_page_number=#{tmPageNumber},
+                        </if>
+                        <if test="tmPrice != null and tmPrice!=''">
+                            tm_price=#{tmPrice},
+                        </if>
+                        <if test="tmPress != null and tmPress!=''">
+                            tm_press=#{tmPress},
+                        </if>
+                        <if test="tmImagespath != null and tmImagespath!=''">
+                            tm_imagespath=#{tmImagespath},
+                        </if>
+                        <if test="createdtime != null and createdtime!=''">
+                            createdtime=#{createdtime},
+                        </if>
+                        <if test="tmStatus != null and tmStatus!=''">
+                            tm_status=#{tmStatus}
+                        </if>
+        </trim>
+    </update>
+
+    <delete id="deleteTeachingMaterialById" parameterType="String">
+        delete from teaching_material where id = #{id}
+    </delete>
+
+    <delete id="batchDeleteTeachingMaterial" parameterType="java.util.Map">
+        delete from teaching_material where id in (
+            <foreach collection="ids" item="id" separator=",">
+                    #{id}
+            </foreach>
+        )
+    </delete>
+</mapper>

@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qg.mapper.TeachingMaterialTypeMapper">
+
+    <select id="getTeachingMaterialTypeById" resultType="com.qg.pojo.TeachingMaterialType">
+        select
+                tm_type_id as tmTypeId,
+                tm_type_name as tmTypeName,
+                tm_type_iseffective as tmTypeIseffective,
+                tm_type_isrelease as tmTypeIsrelease,
+                tm_type_isexamine as tmTypeIsexamine,
+                tm_type_imagepath as tmTypeImagepath,
+                tm_type_weight as tmTypeWeight
+        from teaching_material_type
+        <trim prefix="where" prefixOverrides="and | or">
+            <if test="id != null">
+                and id=#{id}
+            </if>
+        </trim>
+    </select>
+
+    <select id="getTeachingMaterialTypeListByMap" resultType="com.qg.pojo.TeachingMaterialType" parameterType="java.util.Map">
+        select
+                tm_type_id as tmTypeId,
+                tm_type_name as tmTypeName,
+                tm_type_iseffective as tmTypeIseffective,
+                tm_type_isrelease as tmTypeIsrelease,
+                tm_type_isexamine as tmTypeIsexamine,
+                tm_type_imagepath as tmTypeImagepath,
+                tm_type_weight as tmTypeWeight
+        from teaching_material_type
+        <trim prefix="where" prefixOverrides="and | or">
+                <if test="tmTypeId != null and tmTypeId!=''">
+                    and tm_type_id=#{tmTypeId}
+                </if>
+                <if test="tmTypeName != null and tmTypeName!=''">
+                    and tm_type_name=#{tmTypeName}
+                </if>
+                <if test="tmTypeIseffective != null and tmTypeIseffective!=''">
+                    and tm_type_iseffective=#{tmTypeIseffective}
+                </if>
+                <if test="tmTypeIsrelease != null and tmTypeIsrelease!=''">
+                    and tm_type_isrelease=#{tmTypeIsrelease}
+                </if>
+                <if test="tmTypeIsexamine != null and tmTypeIsexamine!=''">
+                    and tm_type_isexamine=#{tmTypeIsexamine}
+                </if>
+                <if test="tmTypeImagepath != null and tmTypeImagepath!=''">
+                    and tm_type_imagepath=#{tmTypeImagepath}
+                </if>
+                <if test="tmTypeWeight != null and tmTypeWeight!=''">
+                    and tm_type_weight=#{tmTypeWeight}
+                </if>
+        </trim>
+        <if test="beginPos != null and pageSize != null ">
+            limit #{beginPos},#{pageSize}
+        </if>
+    </select>
+
+    <select id="getTeachingMaterialTypeCountByMap" resultType="Integer"  parameterType="java.util.Map">
+        select count(*) from teaching_material_type
+        <trim prefix="where" prefixOverrides="and | or">
+                <if test="tmTypeId != null and tmTypeId!=''">
+                    and tm_type_id=#{tmTypeId}
+                </if>
+                <if test="tmTypeName != null and tmTypeName!=''">
+                    and tm_type_name=#{tmTypeName}
+                </if>
+                <if test="tmTypeIseffective != null and tmTypeIseffective!=''">
+                    and tm_type_iseffective=#{tmTypeIseffective}
+                </if>
+                <if test="tmTypeIsrelease != null and tmTypeIsrelease!=''">
+                    and tm_type_isrelease=#{tmTypeIsrelease}
+                </if>
+                <if test="tmTypeIsexamine != null and tmTypeIsexamine!=''">
+                    and tm_type_isexamine=#{tmTypeIsexamine}
+                </if>
+                <if test="tmTypeImagepath != null and tmTypeImagepath!=''">
+                    and tm_type_imagepath=#{tmTypeImagepath}
+                </if>
+                <if test="tmTypeWeight != null and tmTypeWeight!=''">
+                    and tm_type_weight=#{tmTypeWeight}
+                </if>
+        </trim>
+    </select>
+
+    <insert id="insertTeachingMaterialType" parameterType="com.qg.pojo.TeachingMaterialType">
+        insert into teaching_material_type(
+                        tm_type_id,
+                        tm_type_name,
+                        tm_type_iseffective,
+                        tm_type_isrelease,
+                        tm_type_isexamine,
+                        tm_type_imagepath,
+                        tm_type_weight)
+        values(
+                     #{tmTypeId},
+                     #{tmTypeName},
+                     #{tmTypeIseffective},
+                     #{tmTypeIsrelease},
+                     #{tmTypeIsexamine},
+                     #{tmTypeImagepath},
+                    #{tmTypeWeight})
+    </insert>
+
+    <update id="updateTeachingMaterialType" parameterType="com.qg.pojo.TeachingMaterialType">
+        update teaching_material_type
+        <trim prefix="set" suffixOverrides="," suffix="where id=#{id}">
+                        <if test="tmTypeId != null and tmTypeId!=''">
+                            tm_type_id=#{tmTypeId},
+                        </if>
+                        <if test="tmTypeName != null and tmTypeName!=''">
+                            tm_type_name=#{tmTypeName},
+                        </if>
+                        <if test="tmTypeIseffective != null and tmTypeIseffective!=''">
+                            tm_type_iseffective=#{tmTypeIseffective},
+                        </if>
+                        <if test="tmTypeIsrelease != null and tmTypeIsrelease!=''">
+                            tm_type_isrelease=#{tmTypeIsrelease},
+                        </if>
+                        <if test="tmTypeIsexamine != null and tmTypeIsexamine!=''">
+                            tm_type_isexamine=#{tmTypeIsexamine},
+                        </if>
+                        <if test="tmTypeImagepath != null and tmTypeImagepath!=''">
+                            tm_type_imagepath=#{tmTypeImagepath},
+                        </if>
+                        <if test="tmTypeWeight != null and tmTypeWeight!=''">
+                            tm_type_weight=#{tmTypeWeight}
+                        </if>
+        </trim>
+    </update>
+
+    <delete id="deleteTeachingMaterialTypeById" parameterType="String">
+        delete from teaching_material_type where id = #{id}
+    </delete>
+
+    <delete id="batchDeleteTeachingMaterialType" parameterType="java.util.Map">
+        delete from teaching_material_type where id in (
+            <foreach collection="ids" item="id" separator=",">
+                    #{id}
+            </foreach>
+        )
+    </delete>
+</mapper>

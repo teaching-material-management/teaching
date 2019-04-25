@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qg.mapper.TeachingMaterialUserMapper">
+
+    <select id="getTeachingMaterialUserById" resultType="com.qg.pojo.TeachingMaterialUser">
+        select
+                user_id as userId,
+                user_nick as userNick,
+                user_phone as userPhone,
+                user_email as userEmail,
+                user_password as userPassword,
+                user_token as userToken,
+                craetedtime as craetedtime,
+                user_level as userLevel
+        from teaching_material_user
+        <trim prefix="where" prefixOverrides="and | or">
+            <if test="id != null">
+                and id=#{id}
+            </if>
+        </trim>
+    </select>
+
+    <select id="getTeachingMaterialUserListByMap" resultType="com.qg.pojo.TeachingMaterialUser" parameterType="java.util.Map">
+        select
+                user_id as userId,
+                user_nick as userNick,
+                user_phone as userPhone,
+                user_email as userEmail,
+                user_password as userPassword,
+                user_token as userToken,
+                craetedtime as craetedtime,
+                user_level as userLevel
+        from teaching_material_user
+        <trim prefix="where" prefixOverrides="and | or">
+                <if test="userId != null and userId!=''">
+                    and user_id=#{userId}
+                </if>
+                <if test="userNick != null and userNick!=''">
+                    and user_nick=#{userNick}
+                </if>
+                <if test="userPhone != null and userPhone!=''">
+                    and user_phone=#{userPhone}
+                </if>
+                <if test="userEmail != null and userEmail!=''">
+                    and user_email=#{userEmail}
+                </if>
+                <if test="userPassword != null and userPassword!=''">
+                    and user_password=#{userPassword}
+                </if>
+                <if test="userToken != null and userToken!=''">
+                    and user_token=#{userToken}
+                </if>
+                <if test="craetedtime != null and craetedtime!=''">
+                    and craetedtime=#{craetedtime}
+                </if>
+                <if test="userLevel != null and userLevel!=''">
+                    and user_level=#{userLevel}
+                </if>
+        </trim>
+        <if test="beginPos != null and pageSize != null ">
+            limit #{beginPos},#{pageSize}
+        </if>
+    </select>
+
+    <select id="getTeachingMaterialUserCountByMap" resultType="Integer"  parameterType="java.util.Map">
+        select count(*) from teaching_material_user
+        <trim prefix="where" prefixOverrides="and | or">
+                <if test="userId != null and userId!=''">
+                    and user_id=#{userId}
+                </if>
+                <if test="userNick != null and userNick!=''">
+                    and user_nick=#{userNick}
+                </if>
+                <if test="userPhone != null and userPhone!=''">
+                    and user_phone=#{userPhone}
+                </if>
+                <if test="userEmail != null and userEmail!=''">
+                    and user_email=#{userEmail}
+                </if>
+                <if test="userPassword != null and userPassword!=''">
+                    and user_password=#{userPassword}
+                </if>
+                <if test="userToken != null and userToken!=''">
+                    and user_token=#{userToken}
+                </if>
+                <if test="craetedtime != null and craetedtime!=''">
+                    and craetedtime=#{craetedtime}
+                </if>
+                <if test="userLevel != null and userLevel!=''">
+                    and user_level=#{userLevel}
+                </if>
+        </trim>
+    </select>
+
+    <insert id="insertTeachingMaterialUser" parameterType="com.qg.pojo.TeachingMaterialUser">
+        insert into teaching_material_user(
+                        user_id,
+                        user_nick,
+                        user_phone,
+                        user_email,
+                        user_password,
+                        user_token,
+                        craetedtime,
+                        user_level)
+        values(
+                     #{userId},
+                     #{userNick},
+                     #{userPhone},
+                     #{userEmail},
+                     #{userPassword},
+                     #{userToken},
+                     #{craetedtime},
+                    #{userLevel})
+    </insert>
+
+    <update id="updateTeachingMaterialUser" parameterType="com.qg.pojo.TeachingMaterialUser">
+        update teaching_material_user
+        <trim prefix="set" suffixOverrides="," suffix="where id=#{id}">
+                        <if test="userId != null and userId!=''">
+                            user_id=#{userId},
+                        </if>
+                        <if test="userNick != null and userNick!=''">
+                            user_nick=#{userNick},
+                        </if>
+                        <if test="userPhone != null and userPhone!=''">
+                            user_phone=#{userPhone},
+                        </if>
+                        <if test="userEmail != null and userEmail!=''">
+                            user_email=#{userEmail},
+                        </if>
+                        <if test="userPassword != null and userPassword!=''">
+                            user_password=#{userPassword},
+                        </if>
+                        <if test="userToken != null and userToken!=''">
+                            user_token=#{userToken},
+                        </if>
+                        <if test="craetedtime != null and craetedtime!=''">
+                            craetedtime=#{craetedtime},
+                        </if>
+                        <if test="userLevel != null and userLevel!=''">
+                            user_level=#{userLevel}
+                        </if>
+        </trim>
+    </update>
+
+    <delete id="deleteTeachingMaterialUserById" parameterType="String">
+        delete from teaching_material_user where id = #{id}
+    </delete>
+
+    <delete id="batchDeleteTeachingMaterialUser" parameterType="java.util.Map">
+        delete from teaching_material_user where id in (
+            <foreach collection="ids" item="id" separator=",">
+                    #{id}
+            </foreach>
+        )
+    </delete>
+</mapper>
