@@ -4,9 +4,11 @@ package com.system.teaching_material.utils;
 import com.system.teaching_material.pojo.TeachingMaterialUser;
 import org.apache.poi.hssf.usermodel.*;
 
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.List;
+
 //导出execl文件工具类
 public class exportExcel {
     /**
@@ -22,7 +24,7 @@ public class exportExcel {
         HSSFFont font = excel.createFont();//创建字体样式
         font.setFontName("宋体");//使用宋体
 
-//然后创建单元格样式style
+        //然后创建单元格样式style
         HSSFCellStyle style = excel.createCellStyle();
         style.setFont(font);//将字体注入
         style.setAlignment(HSSFCellStyle.ALIGN_CENTER);// 左右居中    
@@ -73,5 +75,19 @@ public class exportExcel {
         }
     }
 
+    public boolean exportExcel(List<TeachingMaterialUser> list){
+        String[] header = {"编号","姓名","年纪","手机号"};
+        List<TeachingMaterialUser> body = list;
+        Long yzm=(int) (Math.random()*((9999999998l)-1111111111l))+1111111111l;
+        try (
+             OutputStream out = new FileOutputStream("F:/"+yzm+".xls") // 输出目的地
+        ) {
+            exportExcel.generateExcel("sheetName", header, body, out);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return false;
+    }
 
 }

@@ -6,7 +6,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
-public class uploading {
+public class UploadingUtil{
 
     public String fileUpload(List<MultipartFile> files,String path){
         if(files.isEmpty()){

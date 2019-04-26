@@ -1,0 +1,18 @@
+spring:
+  datasource:
+    url: jdbc:mysql://114.116.3.200:3306/teaching_material?useUnicode=true&characterEncoding=gbk&zeroDateTimeBehavior=convertToNull
+    username: root
+    password: root
+    driver-class-name: com.mysql.jdbc.Driver
+  redis:
+    database: 0
+    host: 114.116.3.200
+    port: 6379
+    password: 123456
+    timeout: 5000s
+server:
+  port: 9000
+mybatis:
+  mapper-locations: classpath:mapper/*mapper.xml
+config:
+  location: send.properties
