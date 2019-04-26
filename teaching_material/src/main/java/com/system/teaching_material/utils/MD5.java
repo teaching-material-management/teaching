@@ -2,8 +2,6 @@ package com.system.teaching_material.utils;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Random;
 
 public class MD5 {
@@ -46,16 +44,8 @@ public class MD5 {
 	}
 
 
-
-	public static void main(String[] args) {
-		String pwd="root";
-		String conpwd=MD5.getMd5(pwd,32);
-		System.out.println(MD5.getMd5(pwd,32));
-		Map<String,String> map=new HashMap<>();
-		map.put(conpwd,"aaa");
-		System.out.println(map.get(conpwd));
-
-//		System.out.println(getRandomCode());
+	public static String Md5(String pwd){
+		return MD5.getMd5(pwd,32);
 	}
-
+	
 }
