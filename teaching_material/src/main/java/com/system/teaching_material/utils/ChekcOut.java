@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
 @EnableConfigurationProperties
 public class ChekcOut {
 
- 	 @Value("${phone.sid}")
+ 	 @Value(value = "${phone.sid}")
 	 private String sid;
 
 	@Value(value = "${phone.token}")
@@ -30,18 +30,14 @@ public class ChekcOut {
 	}
 
 	//调用发送验证码
-	public void sendYzm(String mobile) {
+	public int sendYzm(String mobile) {
 		int yzm=(int) (Math.random()*(9999-1111))+1111;
 		String param = yzm+"";
 		String result = InstantiationRestAPI().sendSms(sid, token, appid, templateid, param, mobile, uid);
 		System.out.println(yzm);
 		System.out.println("Response content is: " + result);
-
+		return yzm;
 	}
 
-	public void a() {
-		System.out.println(sid);
-		String mobile="17600617885";
-		sendYzm(mobile);
-	}
+
 }

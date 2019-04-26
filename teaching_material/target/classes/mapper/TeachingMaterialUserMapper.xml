@@ -156,4 +156,11 @@
             </foreach>
         )
     </delete>
+
+
+    <update id="updateUserPasswordByPhone" parameterType="String">
+        UPDATE teaching_material_user u
+        SET u.user_password = #{password}
+        where u.user_phone = #{phone}
+    </update>
 </mapper>

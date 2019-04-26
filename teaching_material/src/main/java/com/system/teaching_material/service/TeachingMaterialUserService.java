@@ -1,5 +1,6 @@
 package com.system.teaching_material.service;
 import com.system.teaching_material.pojo.TeachingMaterialUser;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 import java.util.Map;
@@ -21,5 +22,7 @@ public interface TeachingMaterialUserService {
     public Integer qdtxDeleteTeachingMaterialUserById(String id)throws Exception;
 
     public Integer qdtxBatchDeleteTeachingMaterialUser(String ids)throws Exception;
+
+    Integer updatePassword(String password, String phone);
 
 }

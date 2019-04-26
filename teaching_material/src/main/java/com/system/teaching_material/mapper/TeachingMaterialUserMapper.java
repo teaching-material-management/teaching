@@ -23,4 +23,7 @@ public interface TeachingMaterialUserMapper {
 
 	public Integer batchDeleteTeachingMaterialUser(Map<String, List<String>> params);
 
+	//找回密码之后修改密码
+	Integer updateUserPasswordByPhone(@Param("password")String password,@Param("phone")String phone);
+
 }

@@ -54,5 +54,10 @@ public class TeachingMaterialUserServiceImpl implements TeachingMaterialUserServ
         return teachingMaterialUserMapper.batchDeleteTeachingMaterialUser(param);
     }
 
+    @Override
+    public Integer updatePassword(String password, String phone) {
+        return null;
+    }
+
 
 }
