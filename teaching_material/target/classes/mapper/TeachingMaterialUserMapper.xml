@@ -109,7 +109,7 @@
                      #{userNick},
                      #{userPhone},
                      #{userEmail},
-                     #{userPassword},
+                    #{userPassword},
                      #{userToken},
                      #{craetedtime},
                     #{userLevel})

@@ -11,6 +11,7 @@ public class TeachingMaterialApplicationTests {
 
     @Test
     public void contextLoads() {
+        System.out.println("aaa");
     }
 
 }
