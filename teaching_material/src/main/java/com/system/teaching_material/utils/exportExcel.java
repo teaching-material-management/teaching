@@ -22,7 +22,7 @@ public class exportExcel {
         HSSFFont font = excel.createFont();//创建字体样式
         font.setFontName("宋体");//使用宋体
 
-//然后创建单元格样式style
+        //然后创建单元格样式style
         HSSFCellStyle style = excel.createCellStyle();
         style.setFont(font);//将字体注入
         style.setAlignment(HSSFCellStyle.ALIGN_CENTER);// 左右居中    
