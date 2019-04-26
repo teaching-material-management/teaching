@@ -2,9 +2,9 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.qg.mapper.TeachingMaterialWheelPlantingMapper">
+<mapper namespace="com.system.teaching_material.mapper.TeachingMaterialWheelPlantingMapper">
 
-    <select id="getTeachingMaterialWheelPlantingById" resultType="com.qg.pojo.TeachingMaterialWheelPlanting">
+    <select id="getTeachingMaterialWheelPlantingById" resultType="com.system.teaching_material.pojo.TeachingMaterialWheelPlanting">
         select
                 wp_id as wpId,
                 wp_index as wpIndex,
@@ -22,7 +22,7 @@
         </trim>
     </select>
 
-    <select id="getTeachingMaterialWheelPlantingListByMap" resultType="com.qg.pojo.TeachingMaterialWheelPlanting" parameterType="java.util.Map">
+    <select id="getTeachingMaterialWheelPlantingListByMap" resultType="com.system.teaching_material.pojo.TeachingMaterialWheelPlanting" parameterType="java.util.Map">
         select
                 wp_id as wpId,
                 wp_index as wpIndex,
@@ -94,7 +94,7 @@
         </trim>
     </select>
 
-    <insert id="insertTeachingMaterialWheelPlanting" parameterType="com.qg.pojo.TeachingMaterialWheelPlanting">
+    <insert id="insertTeachingMaterialWheelPlanting" parameterType="com.system.teaching_material.pojo.TeachingMaterialWheelPlanting">
         insert into teaching_material_wheel_planting(
                         wp_id,
                         wp_index,
@@ -115,7 +115,7 @@
                     #{wpImagepath})
     </insert>
 
-    <update id="updateTeachingMaterialWheelPlanting" parameterType="com.qg.pojo.TeachingMaterialWheelPlanting">
+    <update id="updateTeachingMaterialWheelPlanting" parameterType="com.system.teaching_material.pojo.TeachingMaterialWheelPlanting">
         update teaching_material_wheel_planting
         <trim prefix="set" suffixOverrides="," suffix="where id=#{id}">
                         <if test="wpId != null and wpId!=''">

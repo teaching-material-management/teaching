@@ -2,9 +2,22 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.qg.mapper.TeachingMaterialUserMapper">
+<mapper namespace="com.system.teaching_material.mapper.TeachingMaterialUserMapper">
 
-    <select id="getTeachingMaterialUserById" resultType="com.qg.pojo.TeachingMaterialUser">
+    <resultMap id="BaseResultMap" type="com.system.teaching_material.pojo.TeachingMaterialUser">
+        <constructor>
+            <idArg column="user_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+            <arg column="user_nick" javaType="java.lang.String" jdbcType="VARCHAR" />
+            <arg column="user_phone" javaType="java.lang.String" jdbcType="VARCHAR" />
+            <arg column="user_email" javaType="java.lang.String" jdbcType="VARCHAR" />
+            <arg column="user_password" javaType="java.lang.String" jdbcType="VARCHAR" />
+            <arg column="user_token" javaType="java.lang.String" jdbcType="VARCHAR" />
+            <arg column="craetedtime" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+            <arg column="user_level" javaType="java.lang.String" jdbcType="VARCHAR" />
+        </constructor>
+    </resultMap>
+
+    <select id="getTeachingMaterialUserById" resultType="com.system.teaching_material.pojo.TeachingMaterialUser">
         select
                 user_id as userId,
                 user_nick as userNick,
@@ -22,7 +35,7 @@
         </trim>
     </select>
 
-    <select id="getTeachingMaterialUserListByMap" resultType="com.qg.pojo.TeachingMaterialUser" parameterType="java.util.Map">
+    <select id="getTeachingMaterialUserListByMap" resultType="com.system.teaching_material.pojo.TeachingMaterialUser" parameterType="java.util.Map">
         select
                 user_id as userId,
                 user_nick as userNick,
@@ -94,7 +107,7 @@
         </trim>
     </select>
 
-    <insert id="insertTeachingMaterialUser" parameterType="com.qg.pojo.TeachingMaterialUser">
+    <insert id="insertTeachingMaterialUser" parameterType="com.system.teaching_material.pojo.TeachingMaterialUser">
         insert into teaching_material_user(
                         user_id,
                         user_nick,
@@ -109,13 +122,13 @@
                      #{userNick},
                      #{userPhone},
                      #{userEmail},
-                     #{userPassword},
+                    #{userPassword},
                      #{userToken},
                      #{craetedtime},
                     #{userLevel})
     </insert>
 
-    <update id="updateTeachingMaterialUser" parameterType="com.qg.pojo.TeachingMaterialUser">
+    <update id="updateTeachingMaterialUser" parameterType="com.system.teaching_material.pojo.TeachingMaterialUser">
         update teaching_material_user
         <trim prefix="set" suffixOverrides="," suffix="where id=#{id}">
                         <if test="userId != null and userId!=''">
@@ -158,7 +171,7 @@
     </delete>
 
 
-    <update id="updateUserPasswordByPhone" parameterType="String">
+    <update id="updateUserPasswordByPhone" >
         UPDATE teaching_material_user u
         SET u.user_password = #{password}
         where u.user_phone = #{phone}

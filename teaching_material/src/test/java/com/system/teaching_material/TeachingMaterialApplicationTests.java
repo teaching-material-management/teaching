@@ -17,11 +17,11 @@ public class TeachingMaterialApplicationTests {
 
     @Test
     public void contextLoads() {
-
-        Integer count = teachingMaterialUserMapper.updateUserPasswordByPhone("345","test1235@test.com");
+        Integer count = teachingMaterialUserMapper.updateUserPasswordByPhone("345","15678999877");
         if(count > 0){
             System.out.println("修改成功");
         }
+        System.out.println("aaa");
     }
 
 }

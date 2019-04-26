@@ -70,4 +70,19 @@ public class TeachingMaterialUser implements Serializable {
     public  String getUserLevel(){
         return this.userLevel;
     }
+
+    public TeachingMaterialUser(String userId, String userNick, String userPhone, String userEmail, String userPassword, String userToken, Date craetedtime, String userLevel) {
+        this.userId = userId;
+        this.userNick = userNick;
+        this.userPhone = userPhone;
+        this.userEmail = userEmail;
+        this.userPassword = userPassword;
+        this.userToken = userToken;
+        this.craetedtime = craetedtime;
+        this.userLevel = userLevel;
+    }
+
+    public TeachingMaterialUser() {
+        super();
+    }
 }

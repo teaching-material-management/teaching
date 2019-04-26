@@ -2,11 +2,12 @@ package com.system.teaching_material.mapper;
 import com.system.teaching_material.pojo.TeachingMaterialUser;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Map;
 
-@Mapper
+@Repository
 public interface TeachingMaterialUserMapper {
 
 	public TeachingMaterialUser getTeachingMaterialUserById(@Param(value = "id") String id)throws Exception;

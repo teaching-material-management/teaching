@@ -2,9 +2,9 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.qg.mapper.TeachingMaterialContenMapper">
+<mapper namespace="com.system.teaching_material.mapper.TeachingMaterialContenMapper">
 
-    <select id="getTeachingMaterialContenById" resultType="com.qg.pojo.TeachingMaterialConten">
+    <select id="getTeachingMaterialContenById" resultType="com.system.teaching_material.pojo.TeachingMaterialConten">
         select
                 tm_content_id as tmContentId,
                 tm_conten_title as tmContenTitle,
@@ -23,7 +23,7 @@
         </trim>
     </select>
 
-    <select id="getTeachingMaterialContenListByMap" resultType="com.qg.pojo.TeachingMaterialConten" parameterType="java.util.Map">
+    <select id="getTeachingMaterialContenListByMap" resultType="com.system.teaching_material.pojo.TeachingMaterialConten" parameterType="java.util.Map">
         select
                 tm_content_id as tmContentId,
                 tm_conten_title as tmContenTitle,
@@ -102,7 +102,7 @@
         </trim>
     </select>
 
-    <insert id="insertTeachingMaterialConten" parameterType="com.qg.pojo.TeachingMaterialConten">
+    <insert id="insertTeachingMaterialConten" parameterType="com.system.teaching_material.pojo.TeachingMaterialConten">
         insert into teaching_material_conten(
                         tm_content_id,
                         tm_conten_title,
@@ -125,7 +125,7 @@
                     #{tmId})
     </insert>
 
-    <update id="updateTeachingMaterialConten" parameterType="com.qg.pojo.TeachingMaterialConten">
+    <update id="updateTeachingMaterialConten" parameterType="com.system.teaching_material.pojo.TeachingMaterialConten">
         update teaching_material_conten
         <trim prefix="set" suffixOverrides="," suffix="where id=#{id}">
                         <if test="tmContentId != null and tmContentId!=''">
